@@ -1,14 +1,14 @@
-class LocalStorageUtils {
+class LocalStorageUtil {
     constructor() {
-        this.kayName = 'products';
+        this.keyName = 'products';
     }
 
     getProducts() {
-        const productsLocalStorage = localStorage.getItem(this.kayName);
+        const productsLocalStorage = localStorage.getItem(this.keyName);
         if (productsLocalStorage !== null) {
             return JSON.parse(productsLocalStorage);
         }
-        return[];
+        return [];
     }
 
     putProducts(id) {
@@ -16,7 +16,7 @@ class LocalStorageUtils {
         let pushProduct = false;
         const index = products.indexOf(id);
 
-        if(index === -1) {
+        if (index === -1) {
             products.push(id);
             pushProduct = true;
         } else {
@@ -29,4 +29,4 @@ class LocalStorageUtils {
     }
 }
 
-const localStorageUtils = new LocalStorageUtils();
+const localStorageUtil = new LocalStorageUtil();
