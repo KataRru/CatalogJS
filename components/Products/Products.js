@@ -15,6 +15,8 @@ class Products {
             element.classList.remove(this.classNameActive);
             element.innerHTML = this.labelAdd;
         }
+
+        headerPage.render(products.length);
     }
 
     render() {
@@ -36,6 +38,13 @@ class Products {
                 <li class="products-element">
                     <span class="products-element__name">${name}</span>
                     <img class="products-element__img" src="${img}" />
+                    <div class="rating" data-total-value="0">
+                        <span class="rating__stars" data-item-value="5">★</span>
+                        <span class="rating__stars" data-item-value="4">★</span>
+                        <span class="rating__stars" data-item-value="3">★</span>
+                        <span class="rating__stars" data-item-value="2">★</span>
+                        <span class="rating__stars" data-item-value="1">★</span>
+                    </div>
                     <span class="products-element__price">
                         ⚡️ ${price.toLocaleString()} USD
                     </span>
@@ -58,3 +67,16 @@ class Products {
 
 const productsPage = new Products();
 productsPage.render();
+
+
+
+// RATING STARS
+const ratingItemsList = document.querySelectorAll('.rating__stars');
+const ratingItemsArray = Array.prototype.slice.call(ratingItemsList);
+
+ratingItemsArray.forEach(item => 
+    item.addEventListener('click', () => {
+        const { itemValue } = item.dataset;
+        item.parentNode.dataset.totalValue = itemValue;
+    })
+);
